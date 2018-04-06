@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <style>
+        .navbar-right2 {
+            float: right !important;
+            margin-right:15px; margin-left: 15px;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="navbar navbar-inverse visible-xs">
+        <a class="navbar-brand" href="#">
+            <div class="visible-xs">MS</div>
+        </a>
+        @Html.Action("Summary", "Cart")
+    </div>
+    <div class="visible-xs">
+        @Html.Action("Menu", "Nav", new { horizontalLayout = true})
+    </div>
+    <div class="row panel">
+        <div class="hidden-xs" style="margin-right:15px;">
+            @Html.Action("Summary", "Cart")
+        </div>
+        <div id="categories" class="col-sm-3 hidden-xs" style="background-color:#2b292a; padding-right:0px;">
+            <form>
+                <div class="panel-body" style="height:150px; text-align:left; background-color:#EE693F; ">
+                    <span style="font-size:45px; color:#ede8e2">Max-Sushi</span>
+                </div>
+            </form>
+            @Html.Action("Menu", "Nav")
+        </div>
+        <div class="col-xs-12 col-sm-8" style="margin-top:10px;">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

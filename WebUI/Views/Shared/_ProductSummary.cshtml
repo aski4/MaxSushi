@@ -1,0 +1,24 @@
+﻿@model Domain.Enities.Product
+
+<div class="well" style="margin:10px; background-image:url(https://images.pexels.com/photos/952647/pexels-photo-952647.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position:center; color:#fcfdfe;">
+    @if (Model.ImageData != null)
+    {
+        <div class="pull-left" style="margin:10px;">
+            <img class="img-thumbnail" width="125" height="125" src="@Url.Action("GetImage", "Products", new { Model.ProductId })" />
+        </div>
+    }
+    <h3>
+        <strong style="margin:10px;">@Model.Name</strong>
+        <span class="pull-right label label-success">@Model.Price.ToString("# грн")</span>
+    </h3>
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+        <div class="pull-right">
+            @Html.HiddenFor(x => x.ProductId)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-primary" value="Add to cart" />
+        </div>
+    }
+
+    <span class="lead" style="margin:10px;">@Model.Description</span>
+</div>

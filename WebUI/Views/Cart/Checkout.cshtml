@@ -1,0 +1,43 @@
+﻿@model Domain.Enities.ShippingDetails
+
+@{
+    ViewBag.Title = "Max-Sushi: Заказ";
+}
+
+<h2>Checkout</h2>
+<p>Пожалуйста укажите данные для оформления заказа</p>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <h3>Заказ для</h3>
+    <div class="form-group">
+        <label>Имя:</label>
+        @Html.TextBoxFor(x => x.Name, new {@class = "form-control" })
+    </div>
+
+    <h3>Информация о доставке</h3>
+    foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        if (property.PropertyName != "Name" && property.PropertyName != "GiftWrap")
+        {
+            <div class="form-group">
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
+                @Html.TextBox(property.PropertyName, null, new { @class = "form-control"})
+            </div>
+        }
+    }
+    
+    <h3>Дополнительно</h3>
+    <div class="checkbox">
+        <label>
+            @Html.EditorFor(x => x.GiftWrap)
+            Учебные палочки
+        </label>
+    </div>
+
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Оформить заказ" />
+    </div>
+}
+
